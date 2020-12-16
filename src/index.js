@@ -1,5 +1,25 @@
 import React, { useEffect } from "react";
 import { render } from "react-dom";
+import CodeMeme from "./img/code-meme.png";
+import toArray from "./img/to-array.png";
+import toArrayFixed from "./img/to-array-fixed.png";
+import ReduceGeneric from "./img/reduce-generic.png";
+import reduce from "./img/reduce.png";
+import ReduceGenericHighlighted from "./img/reduce-generic-highlighted.png";
+import ReduceGenericHighlighted2 from "./img/reduce-generic-highlighted-2.png";
+import TooMuchGenerics from "./img/generics-too-much.jpg";
+import GenericsMeme from "./img/generics-meme.jpg";
+import ArrayNever from "./img/arr-never.png";
+import NpmDownloads from "./img/npm-downloads.png";
+import Stonks from "./img/stonks.jpg";
+import EmptyObj from "./img/empty-obj.png";
+import Any from "./img/any.png";
+import Unknown from "./img/unknown.png";
+import UnknownTypeguard from "./img/unknown-typeguard.png";
+import TsAutoCompleteString from "./img/ts-autocomplete-string.png";
+import TsAutoCompleteObj from "./img/ts-autocomplete-obj.png";
+import InterfaceCompilationResult from "./img/interface-compilation-result.png";
+import EnumTranspilationResult from "./img/enum-transpilation-result.png";
 
 import {
   Appear,
@@ -137,7 +157,7 @@ const Presentation = () => (
           <ListItem>in development since ~2010</ListItem>
         </Appear>
         <Appear elementNum={2}>
-          <ListItem>currently on v4.1.2 (no semver)</ListItem>
+          <ListItem>currently on v4.1.3 (no semver)</ListItem>
         </Appear>
         <Appear elementNum={3}>
           <ListItem>touring complete since v2.2</ListItem>
@@ -159,9 +179,9 @@ const Presentation = () => (
       <Heading>Alternatives</Heading>
       <Text>- Flow (Facebook)</Text>
       <FlexBox>
-        <Image src="/npm-downloads.png" height="350px" />
+        <Image src={NpmDownloads} height="350px" />
         <Image
-          src="/stonks.jpg"
+          src={Stonks}
           height="250px"
           style={{
             marginLeft: "2em",
@@ -557,7 +577,7 @@ const arr: [] = []; // valid, but redundant
 
       <Appear elementNum={0}>
         <FlexBox alignItems="start" justifyContent="start" mt={16}>
-          <Image src="/arr-never.png" width="1000px" />
+          <Image src={ArrayNever} width="1000px" />
         </FlexBox>
       </Appear>
 
@@ -588,7 +608,7 @@ const obj: object = {}; // valid, but redundant
 
         <Appear elementNum={0}>
           <Box mt={16} width="100%">
-            <Image src="/empty-obj.png" width="auto" />
+            <Image src={EmptyObj} width="auto" />
           </Box>
         </Appear>
 
@@ -622,7 +642,7 @@ const obj: Record<string, string> = {}; // using the builtin Record generic (pre
 
       <Appear elementNum={0}>
         <Box mt={16} width="100%">
-          <Image src="/any.png" width="auto" />
+          <Image src={Any} width="auto" />
         </Box>
       </Appear>
     </Slide>
@@ -646,7 +666,7 @@ const obj: unknown = {};
 
             <Appear elementNum={0}>
               <Box mt={16} width="100%">
-                <Image src="/unknown.png" width="auto" />
+                <Image src={Unknown} width="auto" />
               </Box>
             </Appear>
           </UnorderedList>
@@ -654,7 +674,7 @@ const obj: unknown = {};
         <UnorderedList>
           <Appear elementNum={1}>
             <Box mt={16} width="100%">
-              <Image src="/unknown-typeguard.png" width="auto" />
+              <Image src={UnknownTypeguard} width="auto" />
             </Box>
           </Appear>
         </UnorderedList>
@@ -827,14 +847,14 @@ type User = {
             <UnorderedList>
               <ListItem>narrow type autocompletion</ListItem>
             </UnorderedList>
-            <Image src="./ts-autocomplete-string.png" />
+            <Image src={TsAutoCompleteString} />
           </Appear>
 
           <Appear elementNum={1}>
             <UnorderedList>
               <ListItem>nested type autocompletion</ListItem>
             </UnorderedList>
-            <Image src="./ts-autocomplete-obj.png" width="100%" />
+            <Image src={TsAutoCompleteObj} width="100%" />
           </Appear>
         </Box>
       </FlexBox>
@@ -875,12 +895,12 @@ const result = failWith("nope", () => add(2, 2));
       <HidePrismOverflow />
 
       <FlexBox>
-        <Image src="./interface-compilation-result.png" />
+        <Image src={InterfaceCompilationResult} />
       </FlexBox>
 
       <Appear elementNum={0}>
         <FlexBox marginTop={16}>
-          <Image src="./enum-transpilation-result.png" />
+          <Image src={EnumTranspilationResult} />
         </FlexBox>
       </Appear>
     </Slide>
@@ -1071,7 +1091,7 @@ const login = async (username: string, password: string): Promise<User | null> =
 
       <FlexBox style={{ gap: 15 }}>
         <Box width="25%">
-          <Image src="./generics-meme.jpg" height="350px" width="100%" />
+          <Image src={GenericsMeme} height="350px" width="100%" />
         </Box>
 
         <Box width="50%">
@@ -1106,7 +1126,7 @@ type MergeObjects<A, B> = {
 
         <Box width="25%">
           <Appear elementNum={1}>
-            <Image src="./generics-too-much.jpg" height="350px" width="100%" />
+            <Image src={TooMuchGenerics} height="350px" width="100%" />
           </Appear>
         </Box>
       </FlexBox>
@@ -1136,7 +1156,7 @@ const estates = toArray(estate);
 
       <Appear elementNum={0}>
         <FlexBox marginTop={16}>
-          <Image src="./to-array.png" />
+          <Image src={toArray} />
         </FlexBox>
       </Appear>
 
@@ -1175,7 +1195,7 @@ const estates = toArray(estate);
       </CodePane>
 
       <FlexBox marginTop={16}>
-        <Image src="./to-array-fixed.png" />
+        <Image src={toArrayFixed} />
       </FlexBox>
     </Slide>
 
@@ -1201,7 +1221,7 @@ const asObject = arr.reduce((carry, dataset) => {
       </CodePane>
 
       <FlexBox marginTop={16}>
-        <Image src="./reduce.png" />
+        <Image src={reduce} />
       </FlexBox>
     </Slide>
 
@@ -1209,7 +1229,7 @@ const asObject = arr.reduce((carry, dataset) => {
       <Heading>Limitations of Inference</Heading>
 
       <FlexBox>
-        <Image src="./reduce-generic.png" />
+        <Image src={ReduceGeneric} />
       </FlexBox>
     </Slide>
 
@@ -1217,7 +1237,7 @@ const asObject = arr.reduce((carry, dataset) => {
       <Heading>Limitations of Inference</Heading>
 
       <FlexBox>
-        <Image src="./reduce-generic-highlighted.png" />
+        <Image src={ReduceGenericHighlighted} />
       </FlexBox>
     </Slide>
 
@@ -1225,7 +1245,7 @@ const asObject = arr.reduce((carry, dataset) => {
       <Heading>Limitations of Inference</Heading>
 
       <FlexBox>
-        <Image src="./reduce-generic-highlighted-2.png" />
+        <Image src={ReduceGenericHighlighted2} />
       </FlexBox>
     </Slide>
 
@@ -1264,7 +1284,7 @@ const asObject = arr.reduce<Result>((carry, dataset) => {
       </Heading>
 
       <FlexBox>
-        <Image src="/code-meme.png" height="350px" />
+        <Image src={CodeMeme} height="350px" />
       </FlexBox>
     </Slide>
   </Deck>
