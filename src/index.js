@@ -1496,6 +1496,66 @@ const asObject = arr.reduce<Result>((carry, dataset) => {
     </Slide>
 
     <Slide>
+      <Heading>What we're building</Heading>
+
+      <UnorderedList>
+        <ListItem>
+          <Link href="https://ihyp-ts-workshop-project.ljosberinn.vercel.app/">
+            Mini Pokedex
+          </Link>
+        </ListItem>
+
+        <ListItem>
+          Endpoint:
+          https://ihyp-ts-workshop-dummy-backend.ljosberinn.vercel.app/api
+          <UnorderedList>
+            <ListItem>
+              <code>/</code> for <i>all</i> pokemon
+            </ListItem>
+            <ListItem>
+              <code>/?id=$ID</code> for pokemon with id <b>$ID</b> (1-151)
+            </ListItem>
+            <ListItem>
+              <code>/?name=$NAME</code> for pokemon with name <b>$NAME</b>{" "}
+              (english)
+            </ListItem>
+          </UnorderedList>
+        </ListItem>
+      </UnorderedList>
+    </Slide>
+
+    <Slide>
+      <Heading>What you'll need to know</Heading>
+
+      <UnorderedList>
+        <ListItem>
+          TypeScript React files must end with <code>.tsx</code>
+        </ListItem>
+        <ListItem>Next.js & React export types</ListItem>
+        <ListItem>
+          files in <code>/pages</code> must have a default export (Next.js
+          requirement)
+        </ListItem>
+        <ListItem>
+          use <code>npm run lint:types</code> to type-check your code
+        </ListItem>
+        <ListItem>
+          share types between backend and frontend! it's basically a monorepo
+        </ListItem>
+        <ListItem>useState accepts a generic</ListItem>
+      </UnorderedList>
+
+      <Notes>
+        <p>
+          - stellt euch Next.js einfach als 3rd Party Library vor; das Setup ist
+          wie gesagt nur dazu da um eine einfach aufzusetzende und zuverlässige
+          full stack TS Umgebung zu haben
+        </p>
+        <p>- API Handler API ist express-like</p>
+      </Notes>
+    </Slide>
+
+    <Slide>
       <PrismSizeFix />
       <HidePrismOverflow />
 
