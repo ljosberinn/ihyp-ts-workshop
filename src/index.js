@@ -1510,13 +1510,13 @@ const asObject = arr.reduce<Result>((carry, dataset) => {
           https://ihyp-ts-workshop-dummy-backend.ljosberinn.vercel.app/api
           <UnorderedList>
             <ListItem>
-              <code>/</code> for <i>all</i> pokemon
+              <code>/all</code> for <i>all</i> pokemon
             </ListItem>
             <ListItem>
-              <code>/?id=$ID</code> for pokemon with id <b>$ID</b> (1-151)
+              <code>/1</code> for pokemon with id <b>1</b> (1-151)
             </ListItem>
             <ListItem>
-              <code>/?name=$NAME</code> for pokemon with name <b>$NAME</b>{" "}
+              <code>/bulbasaur</code> for pokemon with name <b>bulbasaur</b>{" "}
               (english)
             </ListItem>
           </UnorderedList>
