@@ -30,6 +30,7 @@ import FixingTypes2 from "./img/fixing-types-2.png";
 import FixingTypes3 from "./img/fixing-types-3.png";
 import FixingTypes4 from "./img/fixing-types-4.png";
 import FixingTypes5 from "./img/fixing-types-5.png";
+import TsLetterMark from "./img/ts-lettermark-blue.png";
 
 import {
   Appear,
@@ -86,11 +87,10 @@ const template = () => (
 const Presentation = () => (
   <Deck theme={theme} template={template} transitionEffect="fade">
     <Slide>
-      <Heading>
-        <i>TypeScript</i>
-      </Heading>
-
-      <Text textAlign="center">Basics to Intermediate</Text>
+      <FlexBox flexDirection="column" height="100%">
+        <Image src={TsLetterMark} />
+        <Text textAlign="center">Basics to Intermediate</Text>
+      </FlexBox>
     </Slide>
 
     <Slide>
