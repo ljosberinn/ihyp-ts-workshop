@@ -1772,30 +1772,42 @@ type ReturnTypeOfAdd = ReturnTyp<AddSignature>;
     <Slide>
       <Heading>Far End Examples</Heading>
 
-      <UnorderedList>
-        <ListItem>
-          <Link href="bit.ly/2RLEBvU">typed document.querySelector</Link>
-        </ListItem>
-        <ListItem>
-          <Link href="https://twitter.com/RReverser/status/1333036800487661569">
-            Uint16 "Support"
-          </Link>
-        </ListItem>
-      </UnorderedList>
-    </Slide>
+      <Stepper defaultValue={0} values={[0]}>
+        {(_, step) => {
+          if (step === -1) {
+            return (
+              <UnorderedList>
+                <ListItem>
+                  <Link href="bit.ly/2RLEBvU">
+                    typed document.querySelector
+                  </Link>
+                </ListItem>
+                <ListItem>
+                  <Link href="https://twitter.com/RReverser/status/1333036800487661569">
+                    Uint16 "Support"
+                  </Link>
+                </ListItem>
+              </UnorderedList>
+            );
+          }
 
-    <Slide>
-      <Heading>Far End</Heading>
+          if (step === 0) {
+            return (
+              <FlexBox flexDirection="column">
+                <Image
+                  src="https://cdn.discordapp.com/attachments/508357707602853888/757722794309189662/2020-09-21_22-19-45.gif"
+                  height="350px"
+                />
+                <Link href="https://github.com/0kku/destiny/blob/master/src/parsing/XmlTypeParser.ts">
+                  XML Parser based on TS 4.1 Template Literal parsing
+                </Link>
+              </FlexBox>
+            );
+          }
 
-      <FlexBox flexDirection="column">
-        <Image
-          src="https://cdn.discordapp.com/attachments/508357707602853888/757722794309189662/2020-09-21_22-19-45.gif"
-          height="350px"
-        />
-        <Link href="https://github.com/0kku/destiny/blob/master/src/parsing/XmlTypeParser.ts">
-          XML Parser based on TS 4.1 Template Literal parsing
-        </Link>
-      </FlexBox>
+          return null;
+        }}
+      </Stepper>
     </Slide>
 
     <Slide>
