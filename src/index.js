@@ -23,6 +23,13 @@ import InterfaceCompilationResult from "./img/interface-compilation-result.png";
 import EnumTranspilationResult from "./img/enum-transpilation-result.png";
 import Parameters from "./img/parameters.png";
 import ReturnType from "./img/return-type.png";
+import As from "./img/as.png";
+import As2 from "./img/as-2.png";
+import FixingTypes from "./img/fixing-types.png";
+import FixingTypes2 from "./img/fixing-types-2.png";
+import FixingTypes3 from "./img/fixing-types-3.png";
+import FixingTypes4 from "./img/fixing-types-4.png";
+import FixingTypes5 from "./img/fixing-types-5.png";
 
 import {
   Appear,
@@ -448,7 +455,6 @@ const registeredAt = getDateOfRegistration(user);`)}
         width="100%"
         height="75%"
         frameBorder="0"
-        allowFullScreen
       />
 
       <Text textAlign="center">
@@ -463,7 +469,6 @@ const registeredAt = getDateOfRegistration(user);`)}
         width="100%"
         height="55%"
         frameBorder="0"
-        allowFullScreen
       />
     </Slide>
 
@@ -520,7 +525,6 @@ const registeredAt = new Date(getDateOfRegistration(user) * 1000);`)}
         width="100%"
         height="60%"
         frameBorder="0"
-        allowFullScreen
       />
     </Slide>
 
@@ -1346,6 +1350,143 @@ const asObject = arr.reduce<Result>((carry, dataset) => {
     </Slide>
 
     <Slide>
+      <Heading>Limitations of TypeScript</Heading>
+
+      <FlexBox>
+        <Image src={As} />
+      </FlexBox>
+
+      <Text>
+        Sometimes(!) we know better than TypeScript. But TypeScript can't be
+        easily convinced.
+      </Text>
+
+      <Appear elementNum={0}>
+        <FlexBox>
+          <Image src={As2} />
+        </FlexBox>
+      </Appear>
+    </Slide>
+
+    <Slide>
+      <Heading>Fixing Native or Third Party Type Bugs</Heading>
+      <PrismSizeFix />
+      <HidePrismOverflow />
+
+      <CodePane language="ts" indentSize={4}>
+        {indentNormalizer(`
+useEffect(() => {
+  const onBeforeInstall = (event: BeforeInstallPromptEvent) => {
+    event.preventDefault();
+
+    promptEvent.current = event;
+    onOpen();
+  };
+
+  window.addEventListener('beforeinstallprompt', onBeforeInstall);
+
+  return () => {
+    window.removeEventListener('beforeinstallprompt', onBeforeInstall);
+  };
+}, [onOpen]);
+          `)}
+      </CodePane>
+    </Slide>
+
+    <Slide>
+      <Heading>Fixing Native or Third Party Type Bugs</Heading>
+      <PrismSizeFix />
+      <HidePrismOverflow />
+
+      <FlexBox>
+        <Image src={FixingTypes} />
+      </FlexBox>
+    </Slide>
+
+    <Slide>
+      <Heading>Fixing Native or Third Party Type Bugs</Heading>
+      <PrismSizeFix />
+      <HidePrismOverflow />
+
+      <FlexBox>
+        <Image src={FixingTypes2} />
+      </FlexBox>
+    </Slide>
+
+    <Slide>
+      <Heading>Fixing Native or Third Party Type Bugs</Heading>
+      <PrismSizeFix />
+      <HidePrismOverflow />
+
+      <FlexBox>
+        <Image src={FixingTypes3} />
+      </FlexBox>
+    </Slide>
+
+    <Slide>
+      <Heading>Fixing Native or Third Party Type Bugs</Heading>
+      <PrismSizeFix />
+      <HidePrismOverflow />
+
+      <FlexBox>
+        <Image src={FixingTypes4} />
+      </FlexBox>
+    </Slide>
+
+    <Slide>
+      <Heading>Fixing Native or Third Party Type Bugs</Heading>
+      <PrismSizeFix />
+      <HidePrismOverflow />
+
+      <FlexBox>
+        <Image src={FixingTypes5} />
+      </FlexBox>
+    </Slide>
+
+    <Slide>
+      <Heading>Fixing Native or Third Party Type Bugs</Heading>
+      <PrismSizeFix />
+      <HidePrismOverflow />
+
+      <CodePane language="ts" indentSize={4}>
+        {indentNormalizer(`
+useEffect(() => {
+  const onBeforeInstall = (event: BeforeInstallPromptEvent) => {
+    event.preventDefault();
+
+    promptEvent.current = event;
+    onOpen();
+  };
+
+  // @ts-expect-error event not available in all browsers
+  window.addEventListener('beforeinstallprompt', onBeforeInstall);
+
+  return () => {
+    // @ts-expect-error event not available in all browsers
+    window.removeEventListener('beforeinstallprompt', onBeforeInstall);
+  };
+}, [onOpen]);
+          `)}
+      </CodePane>
+    </Slide>
+
+    <Slide>
+      <Heading>Fixing Native or Third Party Type Bugs</Heading>
+      <PrismSizeFix />
+      <HidePrismOverflow />
+
+      <CodePane language="ts" indentSize={4}>
+        {indentNormalizer(`
+// @ts-expect-error <description>
+// roughly means: ignore if here is an error, but complain if it is resolved
+
+// @ts-ignore <description>
+// roughly means: disable typescript here ⚠
+`)}
+      </CodePane>
+    </Slide>
+
+    <Slide>
       <Heading>
         Workshop?
         <br />
@@ -1611,7 +1752,23 @@ type ReturnTypeOfAdd = ReturnTyp<AddSignature>;
         <ListItem>
           <Link href="bit.ly/2RLEBvU">typed document.querySelector</Link>
         </ListItem>
+        <ListItem>
+          <Link href="https://twitter.com/RReverser/status/1333036800487661569">
+            Uint16 "Support"
+          </Link>
+        </ListItem>
       </UnorderedList>
+    </Slide>
+
+    <Slide>
+      <Heading>🥳 🎉</Heading>
+
+      <iframe
+        src="https://giphy.com/embed/3oKIPf3C7HqqYBVcCk"
+        width="100%"
+        height="65%"
+        frameBorder="0"
+      />
     </Slide>
   </Deck>
 );
