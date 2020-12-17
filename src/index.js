@@ -14,6 +14,7 @@ import NpmDownloads from "./img/npm-downloads.png";
 import Stonks from "./img/stonks.jpg";
 import EmptyObj from "./img/empty-obj.png";
 import Any from "./img/any.png";
+import AnyWelp from "./img/any-welp.png";
 import Unknown from "./img/unknown.png";
 import UnknownTypeguard from "./img/unknown-typeguard.png";
 import TsAutoCompleteString from "./img/ts-autocomplete-string.png";
@@ -669,6 +670,12 @@ const obj: Record<string, string> = {}; // using the builtin Record generic (pre
       <Appear elementNum={0}>
         <Box mt={16} width="100%">
           <Image src={Any} width="auto" />
+        </Box>
+      </Appear>
+
+      <Appear elementNum={1}>
+        <Box mt={16} width="100%">
+          <Image src={AnyWelp} width="auto" />
         </Box>
       </Appear>
     </Slide>
