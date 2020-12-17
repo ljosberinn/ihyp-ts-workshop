@@ -1762,11 +1762,15 @@ type ReturnTypeOfAdd = ReturnTyp<AddSignature>;
             type-fest
           </Link>
         </ListItem>
+
+        <ListItem>
+          <Link href="https://github.com/gcanti/fp-ts">fp-ts</Link>
+        </ListItem>
       </UnorderedList>
     </Slide>
 
     <Slide>
-      <Heading>Far End</Heading>
+      <Heading>Far End Examples</Heading>
 
       <UnorderedList>
         <ListItem>
@@ -1803,6 +1807,28 @@ type ReturnTypeOfAdd = ReturnTyp<AddSignature>;
         height="65%"
         frameBorder="0"
       />
+    </Slide>
+
+    <Slide>
+      <Heading>Meta</Heading>
+
+      <UnorderedList>
+        <ListItem>
+          <Link href="https://github.com/ljosberinn/ihyp-ts-workshop">
+            Slide Repository, powered by <code>spectacle</code>
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link href="https://github.com/ljosberinn/ihyp-ts-workshop-dummy-backend">
+            Dummy Backend Repository
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link href="https://github.com/ljosberinn/ihyp-ts-workshop-project">
+            Demo Repository
+          </Link>
+        </ListItem>
+      </UnorderedList>
     </Slide>
   </Deck>
 );
