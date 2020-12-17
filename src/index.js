@@ -48,6 +48,7 @@ import {
   Text,
   UnorderedList,
   indentNormalizer,
+  Stepper,
   Link,
 } from "spectacle";
 
@@ -82,8 +83,13 @@ const Presentation = () => (
   <Deck theme={theme} template={template} transitionEffect="fade">
     <Slide>
       <FlexBox flexDirection="column" height="100%">
-        <Image src={TsLetterMark} />
-        <Text textAlign="center">Basics to Intermediate</Text>
+        <Box>
+          <Image src={TsLetterMark} />
+          <Text textAlign="center">Basics to Intermediate</Text>
+        </Box>
+        <Box>
+          <Text fontSize={20}>Interhyp Digital Summit 2020</Text>
+        </Box>
       </FlexBox>
     </Slide>
 
@@ -953,7 +959,8 @@ const result = failWith("nope", () => add(2, 2));
       </CodePane>
 
       <Text>
-        <code>never</code> expects some of the code path to never reach its end
+        <code>never</code> expects some of the code path to <i>never</i> reach
+        its end
       </Text>
     </Slide>
 
@@ -1367,117 +1374,113 @@ const asObject = arr.reduce<Result>((carry, dataset) => {
       <PrismSizeFix />
       <HidePrismOverflow />
 
-      <CodePane language="ts" indentSize={4}>
-        {indentNormalizer(`
-useEffect(() => {
-  const onBeforeInstall = (event: BeforeInstallPromptEvent) => {
-    event.preventDefault();
+      <Stepper defaultValue={1} values={[1, 2, 3, 4, 5, 6, 7]}>
+        {(_, step) => {
+          if (step === -1) {
+            return (
+              <CodePane language="ts" indentSize={4}>
+                {indentNormalizer(`
+    useEffect(() => {
+      const onBeforeInstall = (event: BeforeInstallPromptEvent) => {
+        event.preventDefault();
+    
+        promptEvent.current = event;
+        onOpen();
+      };
+    
+      window.addEventListener('beforeinstallprompt', onBeforeInstall);
+    
+      return () => {
+        window.removeEventListener('beforeinstallprompt', onBeforeInstall);
+      };
+    }, [onOpen]);
+              `)}
+              </CodePane>
+            );
+          }
 
-    promptEvent.current = event;
-    onOpen();
-  };
+          if (step === 0) {
+            return (
+              <FlexBox>
+                <Image src={FixingTypes} />
+              </FlexBox>
+            );
+          }
 
-  window.addEventListener('beforeinstallprompt', onBeforeInstall);
+          if (step === 1) {
+            return (
+              <FlexBox>
+                <Image src={FixingTypes2} />
+              </FlexBox>
+            );
+          }
 
-  return () => {
-    window.removeEventListener('beforeinstallprompt', onBeforeInstall);
-  };
-}, [onOpen]);
-          `)}
-      </CodePane>
-    </Slide>
+          if (step === 2) {
+            return (
+              <FlexBox>
+                <Image src={FixingTypes3} />
+              </FlexBox>
+            );
+          }
 
-    <Slide>
-      <Heading>Fixing Native or Third Party Type Bugs</Heading>
-      <PrismSizeFix />
-      <HidePrismOverflow />
+          if (step === 3) {
+            return (
+              <FlexBox>
+                <Image src={FixingTypes4} />
+              </FlexBox>
+            );
+          }
 
-      <FlexBox>
-        <Image src={FixingTypes} />
-      </FlexBox>
-    </Slide>
+          if (step === 4) {
+            return (
+              <FlexBox>
+                <Image src={FixingTypes5} />
+              </FlexBox>
+            );
+          }
 
-    <Slide>
-      <Heading>Fixing Native or Third Party Type Bugs</Heading>
-      <PrismSizeFix />
-      <HidePrismOverflow />
+          if (step === 5) {
+            return (
+              <CodePane language="ts" indentSize={4}>
+                {indentNormalizer(`
+    useEffect(() => {
+      const onBeforeInstall = (event: BeforeInstallPromptEvent) => {
+        event.preventDefault();
+    
+        promptEvent.current = event;
+        onOpen();
+      };
+    
+      // @ts-expect-error event not available in all browsers
+      window.addEventListener('beforeinstallprompt', onBeforeInstall);
+    
+      return () => {
+        // @ts-expect-error event not available in all browsers
+        window.removeEventListener('beforeinstallprompt', onBeforeInstall);
+      };
+    }, [onOpen]);
+              `)}
+              </CodePane>
+            );
+          }
 
-      <FlexBox>
-        <Image src={FixingTypes2} />
-      </FlexBox>
-    </Slide>
+          if (step === 6) {
+            return (
+              <CodePane language="ts" indentSize={4}>
+                {indentNormalizer(`
+      // @ts-expect-error <description>
+      // roughly means: ignore if here is an error, but complain if it is resolved
+      
+      // @ts-ignore <description>
+      // roughly means: disable typescript here ⚠
+      `)}
+              </CodePane>
+            );
+          }
 
-    <Slide>
-      <Heading>Fixing Native or Third Party Type Bugs</Heading>
-      <PrismSizeFix />
-      <HidePrismOverflow />
-
-      <FlexBox>
-        <Image src={FixingTypes3} />
-      </FlexBox>
-    </Slide>
-
-    <Slide>
-      <Heading>Fixing Native or Third Party Type Bugs</Heading>
-      <PrismSizeFix />
-      <HidePrismOverflow />
-
-      <FlexBox>
-        <Image src={FixingTypes4} />
-      </FlexBox>
-    </Slide>
-
-    <Slide>
-      <Heading>Fixing Native or Third Party Type Bugs</Heading>
-      <PrismSizeFix />
-      <HidePrismOverflow />
-
-      <FlexBox>
-        <Image src={FixingTypes5} />
-      </FlexBox>
-    </Slide>
-
-    <Slide>
-      <Heading>Fixing Native or Third Party Type Bugs</Heading>
-      <PrismSizeFix />
-      <HidePrismOverflow />
-
-      <CodePane language="ts" indentSize={4}>
-        {indentNormalizer(`
-useEffect(() => {
-  const onBeforeInstall = (event: BeforeInstallPromptEvent) => {
-    event.preventDefault();
-
-    promptEvent.current = event;
-    onOpen();
-  };
-
-  // @ts-expect-error event not available in all browsers
-  window.addEventListener('beforeinstallprompt', onBeforeInstall);
-
-  return () => {
-    // @ts-expect-error event not available in all browsers
-    window.removeEventListener('beforeinstallprompt', onBeforeInstall);
-  };
-}, [onOpen]);
-          `)}
-      </CodePane>
-    </Slide>
-
-    <Slide>
-      <Heading>Fixing Native or Third Party Type Bugs</Heading>
-      <PrismSizeFix />
-      <HidePrismOverflow />
-
-      <CodePane language="ts" indentSize={4}>
-        {indentNormalizer(`
-// @ts-expect-error <description>
-// roughly means: ignore if here is an error, but complain if it is resolved
-
-// @ts-ignore <description>
-// roughly means: disable typescript here ⚠
-`)}
-      </CodePane>
+          return null;
+        }}
+      </Stepper>
     </Slide>
 
     <Slide>
@@ -1493,52 +1496,62 @@ useEffect(() => {
     </Slide>
 
     <Slide>
-      <Heading>Built-In Utility Types</Heading>
       <PrismSizeFix />
       <HidePrismOverflow />
 
-      <Link href="https://www.typescriptlang.org/docs/handbook/utility-types.html">
-        official TS Docs
-      </Link>
-    </Slide>
+      <Stepper defaultValue={1} values={[1, 2, 3, 4, 5]}>
+        {(_, step) => {
+          if (step === -1) {
+            return (
+              <>
+                <Heading>Built-In Utility Types</Heading>
 
-    <Slide>
-      <Heading>Built-In Utility Types: Partial</Heading>
-      <PrismSizeFix />
-      <HidePrismOverflow />
+                <Link href="https://www.typescriptlang.org/docs/handbook/utility-types.html">
+                  official TS Docs
+                </Link>
+              </>
+            );
+          }
 
-      <UnorderedList>
-        <ListItem>
-          <code>{`Partial<Type>`}</code>
+          if (step === 0) {
+            return (
+              <>
+                <Heading>Built-In Utility Types: Partial</Heading>
 
-          <CodePane language="ts" indentSize={4}>
-            {indentNormalizer(`
-interface Estate {
-  constructionYear: number;
-  street: string;
-} 
+                <UnorderedList>
+                  <ListItem>
+                    <code>{`Partial<Type>`}</code>
 
-const estate: Partial<Estate> = {};
-const estate: Partial<Estate> = {
-  street: 'Domagkstraße'
-};
-                `)}
-          </CodePane>
-        </ListItem>
-      </UnorderedList>
-    </Slide>
+                    <CodePane language="ts" indentSize={4}>
+                      {indentNormalizer(`
+        interface Estate {
+          constructionYear: number;
+          street: string;
+        } 
+        
+        const estate: Partial<Estate> = {};
+        const estate: Partial<Estate> = {
+          street: 'Domagkstraße'
+        };
+                        `)}
+                    </CodePane>
+                  </ListItem>
+                </UnorderedList>
+              </>
+            );
+          }
 
-    <Slide>
-      <Heading>Built-In Utility Types: Readonly</Heading>
-      <PrismSizeFix />
-      <HidePrismOverflow />
+          if (step === 1) {
+            return (
+              <>
+                <Heading>Built-In Utility Types: Readonly</Heading>
 
-      <UnorderedList>
-        <ListItem>
-          <code>{`Readonly<Type>`}</code>
+                <UnorderedList>
+                  <ListItem>
+                    <code>{`Readonly<Type>`}</code>
 
-          <CodePane language="ts" indentSize={4}>
-            {indentNormalizer(`
+                    <CodePane language="ts" indentSize={4}>
+                      {indentNormalizer(`
 interface Estate {
   constructionYear: number;
   street: string;
@@ -1551,22 +1564,24 @@ const estate: Readonly<Estate> = {
 // not allowed!
 estate.street = 'nope';
                 `)}
-          </CodePane>
-        </ListItem>
-      </UnorderedList>
-    </Slide>
+                    </CodePane>
+                  </ListItem>
+                </UnorderedList>
+              </>
+            );
+          }
 
-    <Slide>
-      <Heading>Built-In Utility Types: Record</Heading>
-      <PrismSizeFix />
-      <HidePrismOverflow />
+          if (step === 2) {
+            return (
+              <>
+                <Heading>Built-In Utility Types: Record</Heading>
 
-      <UnorderedList>
-        <ListItem>
-          <code>{`Record<Keys, Type>`}</code>
+                <UnorderedList>
+                  <ListItem>
+                    <code>{`Record<Keys, Type>`}</code>
 
-          <CodePane language="ts" indentSize={4}>
-            {indentNormalizer(`
+                    <CodePane language="ts" indentSize={4}>
+                      {indentNormalizer(`
 type Keys = 'constructionYear' | 'street';            
 type Estate = Record<Keys, string>;
 
@@ -1578,22 +1593,24 @@ const estate: Estate = {
   zip: '123',
 };
                 `)}
-          </CodePane>
-        </ListItem>
-      </UnorderedList>
-    </Slide>
+                    </CodePane>
+                  </ListItem>
+                </UnorderedList>
+              </>
+            );
+          }
 
-    <Slide>
-      <Heading>Built-In Utility Types: Pick</Heading>
-      <PrismSizeFix />
-      <HidePrismOverflow />
+          if (step === 3) {
+            return (
+              <>
+                <Heading>Built-In Utility Types: Pick</Heading>
 
-      <UnorderedList>
-        <ListItem>
-          <code>{`Pick<Type, Keys>`}</code>
+                <UnorderedList>
+                  <ListItem>
+                    <code>{`Pick<Type, Keys>`}</code>
 
-          <CodePane language="ts" indentSize={4}>
-            {indentNormalizer(`
+                    <CodePane language="ts" indentSize={4}>
+                      {indentNormalizer(`
 interface Estate {
   constructionYear: number;
   street: string;
@@ -1610,41 +1627,50 @@ const address: Address = {
   constructionYear: 2020,
 };
                 `)}
-          </CodePane>
-        </ListItem>
-      </UnorderedList>
-    </Slide>
+                    </CodePane>
+                  </ListItem>
+                </UnorderedList>
+              </>
+            );
+          }
 
-    <Slide>
-      <Heading>Built-In Utility Types: Omit</Heading>
-      <PrismSizeFix />
-      <HidePrismOverflow />
+          if (step === 4) {
+            return (
+              <>
+                <Heading>Built-In Utility Types: Omit</Heading>
 
-      <UnorderedList>
-        <ListItem>
-          <code>{`Omit<Type, Keys>`}</code>
+                <UnorderedList>
+                  <ListItem>
+                    <code>{`Omit<Type, Keys>`}</code>
 
-          <CodePane language="ts" indentSize={4}>
-            {indentNormalizer(`
-interface Estate {
-  constructionYear: number;
-  street: string;
-  zip: string;
-}
+                    <CodePane language="ts" indentSize={4}>
+                      {indentNormalizer(`
+        interface Estate {
+          constructionYear: number;
+          street: string;
+          zip: string;
+        }
+        
+        type EverythingButAddress = Omit<Estate, 'street' | 'zip'>;
+        
+        const address: EverythingButAddress = {
+          // valid
+          constructionYear: 2020,
+          // invalid
+          street: 'Domagkstraße',
+          zip: '80807',
+        };
+                        `)}
+                    </CodePane>
+                  </ListItem>
+                </UnorderedList>
+              </>
+            );
+          }
 
-type EverythingButAddress = Omit<Estate, 'street' | 'zip'>;
-
-const address: EverythingButAddress = {
-  // valid
-  constructionYear: 2020,
-  // invalid
-  street: 'Domagkstraße',
-  zip: '80807',
-};
-                `)}
-          </CodePane>
-        </ListItem>
-      </UnorderedList>
+          return null;
+        }}
+      </Stepper>
     </Slide>
 
     <Slide>
@@ -1752,6 +1778,20 @@ type ReturnTypeOfAdd = ReturnTyp<AddSignature>;
           </Link>
         </ListItem>
       </UnorderedList>
+    </Slide>
+
+    <Slide>
+      <Heading>Far End</Heading>
+
+      <FlexBox flexDirection="column">
+        <Image
+          src="https://cdn.discordapp.com/attachments/508357707602853888/757722794309189662/2020-09-21_22-19-45.gif"
+          height="350px"
+        />
+        <Link href="https://github.com/0kku/destiny/blob/master/src/parsing/XmlTypeParser.ts">
+          XML Parser based on TS 4.1 Template Literal parsing
+        </Link>
+      </FlexBox>
     </Slide>
 
     <Slide>
