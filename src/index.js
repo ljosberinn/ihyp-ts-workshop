@@ -595,6 +595,32 @@ const arr: [] = []; // valid, but redundant
     </Slide>
 
     <Slide>
+      <Heading>tuple</Heading>
+      <HidePrismOverflow />
+
+      <CodePane language="ts">
+        {indentNormalizer(`
+type Coordinates = [number, number];
+
+const position: Coordinates = [48.1829205210259, 11.596245584653518];
+                `)}
+      </CodePane>
+
+      <Appear elementNum={0}>
+        <Box marginTop={16}>
+          <CodePane language="ts">
+            {indentNormalizer(`
+type Coordinates = [number, number, number?];
+
+const position: Coordinates = [48.1829205210259, 11.596245584653518];
+const position: Coordinates = [48.1829205210259, 11.596245584653518, 1];
+                `)}
+          </CodePane>
+        </Box>
+      </Appear>
+    </Slide>
+
+    <Slide>
       <Heading>object</Heading>
       <HidePrismOverflow />
 

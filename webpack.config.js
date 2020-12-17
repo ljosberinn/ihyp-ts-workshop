@@ -20,7 +20,7 @@ const babelLoader = {
  */
 
 module.exports = {
-  mode: process.env.NODE_ENV === "development" ? "development" : "production",
+  mode: process.env.NODE_ENV === "production" ? "production" : "development",
   entry: "./src/index.js", // Default for boilerplate generation.
   output: {
     path: path.resolve("dist"),
