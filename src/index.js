@@ -21,6 +21,8 @@ import TsAutoCompleteString from "./img/ts-autocomplete-string.png";
 import TsAutoCompleteObj from "./img/ts-autocomplete-obj.png";
 import InterfaceCompilationResult from "./img/interface-compilation-result.png";
 import EnumTranspilationResult from "./img/enum-transpilation-result.png";
+import Parameters from "./img/parameters.png";
+import ReturnType from "./img/return-type.png";
 
 import {
   Appear,
@@ -265,6 +267,40 @@ const Presentation = () => (
       <Notes>
         <p>- * Deno als Node-Nachfolger unterstützt nativ TypeScript</p>
       </Notes>
+    </Slide>
+
+    <Slide>
+      <Heading>Community Opinions</Heading>
+
+      <FlexBox>
+        <iframe
+          src="https://static-tweet.vercel.app/1339431957990498304"
+          width="550px"
+          height="285px"
+        />
+      </FlexBox>
+
+      <br />
+      <Text>
+        Kent C. Dodds is the author of <code>@testing-library</code>,{" "}
+        <code>epicreact.dev</code>, <code>testingjavascript.com</code> and
+        others.
+      </Text>
+    </Slide>
+
+    <Slide>
+      <Heading>Community Opinions</Heading>
+
+      <FlexBox>
+        <iframe
+          src="https://static-tweet.vercel.app/1339340055790276608"
+          width="550px"
+          height="285px"
+        />
+      </FlexBox>
+
+      <br />
+      <Text>Mark Dalgleish is a co-creator of CSS Modules.</Text>
     </Slide>
 
     <Slide>
@@ -1319,6 +1355,263 @@ const asObject = arr.reduce<Result>((carry, dataset) => {
       <FlexBox>
         <Image src={CodeMeme} height="350px" />
       </FlexBox>
+    </Slide>
+
+    <Slide>
+      <Heading>Built-In Utility Types</Heading>
+      <PrismSizeFix />
+      <HidePrismOverflow />
+
+      <Link href="https://www.typescriptlang.org/docs/handbook/utility-types.html">
+        official TS Docs
+      </Link>
+    </Slide>
+
+    <Slide>
+      <Heading>Built-In Utility Types: Partial</Heading>
+      <PrismSizeFix />
+      <HidePrismOverflow />
+
+      <UnorderedList>
+        <ListItem>
+          <code>{`Partial<Type>`}</code>
+
+          <CodePane language="ts" indentSize={4}>
+            {indentNormalizer(`
+interface Estate {
+  constructionYear: number;
+  street: string;
+} 
+
+const estate: Partial<Estate> = {};
+const estate: Partial<Estate> = {
+  street: 'Domagkstraße'
+};
+                `)}
+          </CodePane>
+        </ListItem>
+      </UnorderedList>
+    </Slide>
+
+    <Slide>
+      <Heading>Built-In Utility Types: Readonly</Heading>
+      <PrismSizeFix />
+      <HidePrismOverflow />
+
+      <UnorderedList>
+        <ListItem>
+          <code>{`Readonly<Type>`}</code>
+
+          <CodePane language="ts" indentSize={4}>
+            {indentNormalizer(`
+interface Estate {
+  constructionYear: number;
+  street: string;
+} 
+
+const estate: Readonly<Estate> = {
+  street: 'Domagkstraße'
+};
+
+// not allowed!
+estate.street = 'nope';
+                `)}
+          </CodePane>
+        </ListItem>
+      </UnorderedList>
+    </Slide>
+
+    <Slide>
+      <Heading>Built-In Utility Types: Record</Heading>
+      <PrismSizeFix />
+      <HidePrismOverflow />
+
+      <UnorderedList>
+        <ListItem>
+          <code>{`Record<Keys, Type>`}</code>
+
+          <CodePane language="ts" indentSize={4}>
+            {indentNormalizer(`
+type Keys = 'constructionYear' | 'street';            
+type Estate = Record<Keys, string>;
+
+const estate: Estate = {
+  // valid
+  street: 'Domagkstraße',
+  constructionYear: '2020',
+  // invalid
+  zip: '123',
+};
+                `)}
+          </CodePane>
+        </ListItem>
+      </UnorderedList>
+    </Slide>
+
+    <Slide>
+      <Heading>Built-In Utility Types: Pick</Heading>
+      <PrismSizeFix />
+      <HidePrismOverflow />
+
+      <UnorderedList>
+        <ListItem>
+          <code>{`Pick<Type, Keys>`}</code>
+
+          <CodePane language="ts" indentSize={4}>
+            {indentNormalizer(`
+interface Estate {
+  constructionYear: number;
+  street: string;
+  zip: string;
+}
+
+type Address = Pick<Estate, 'street' | 'zip'>;
+
+const address: Address = {
+  // valid
+  street: 'Domagkstraße',
+  zip: '80807',
+  // invalid
+  constructionYear: 2020,
+};
+                `)}
+          </CodePane>
+        </ListItem>
+      </UnorderedList>
+    </Slide>
+
+    <Slide>
+      <Heading>Built-In Utility Types: Omit</Heading>
+      <PrismSizeFix />
+      <HidePrismOverflow />
+
+      <UnorderedList>
+        <ListItem>
+          <code>{`Omit<Type, Keys>`}</code>
+
+          <CodePane language="ts" indentSize={4}>
+            {indentNormalizer(`
+interface Estate {
+  constructionYear: number;
+  street: string;
+  zip: string;
+}
+
+type EverythingButAddress = Omit<Estate, 'street' | 'zip'>;
+
+const address: EverythingButAddress = {
+  // valid
+  constructionYear: 2020,
+  // invalid
+  street: 'Domagkstraße',
+  zip: '80807',
+};
+                `)}
+          </CodePane>
+        </ListItem>
+      </UnorderedList>
+    </Slide>
+
+    <Slide>
+      <Heading>Built-In Utility Types: Parameters</Heading>
+      <PrismSizeFix />
+      <HidePrismOverflow />
+
+      <UnorderedList>
+        <ListItem>
+          <code>{`Parameters<Callable>`}</code>
+
+          <CodePane language="ts" indentSize={4}>
+            {indentNormalizer(`
+const add = (a: number, b: number) => a + b;
+
+type ParametersOfAdd = Parameters<typeof add>;
+                `)}
+          </CodePane>
+
+          <Appear elementNum={0}>
+            <FlexBox marginTop={16} justifyContent="start">
+              <Image src={Parameters} />
+            </FlexBox>
+          </Appear>
+
+          <Appear elementNum={1}>
+            <Box marginTop={16}>
+              <CodePane language="ts" indentSize={4}>
+                {indentNormalizer(`
+type AddSignature = (a: number, b: number) => number;
+
+type ParametersOfAdd = Parameters<AddSignature>;
+                `)}
+              </CodePane>
+            </Box>
+          </Appear>
+        </ListItem>
+      </UnorderedList>
+    </Slide>
+
+    <Slide>
+      <Heading>Built-In Utility Types: ReturnType</Heading>
+      <PrismSizeFix />
+      <HidePrismOverflow />
+
+      <UnorderedList>
+        <ListItem>
+          <code>{`ReturnType<Callable>`}</code>
+
+          <CodePane language="ts" indentSize={4}>
+            {indentNormalizer(`
+const add = (a: number, b: number) => a + b;
+
+type ReturnTypeOfAdd = ReturnType<typeof add>;
+                `)}
+          </CodePane>
+
+          <Appear elementNum={0}>
+            <FlexBox marginTop={16} justifyContent="start">
+              <Image src={ReturnType} />
+            </FlexBox>
+          </Appear>
+
+          <Appear elementNum={1}>
+            <Box marginTop={16}>
+              <CodePane language="ts" indentSize={4}>
+                {indentNormalizer(`
+type AddSignature = (a: number, b: number) => number;
+
+type ReturnTypeOfAdd = ReturnTyp<AddSignature>;
+                `)}
+              </CodePane>
+            </Box>
+          </Appear>
+        </ListItem>
+      </UnorderedList>
+    </Slide>
+
+    <Slide>
+      <Heading>Third-Party Utility Types</Heading>
+
+      <UnorderedList>
+        <ListItem>
+          <Link href="https://github.com/millsp/ts-toolbelt">ts-toolbelt</Link>
+        </ListItem>
+
+        <ListItem>
+          <Link href="https://github.com/sindresorhus/type-fest">
+            type-fest
+          </Link>
+        </ListItem>
+      </UnorderedList>
+    </Slide>
+
+    <Slide>
+      <Heading>Far End</Heading>
+
+      <UnorderedList>
+        <ListItem>
+          <Link href="bit.ly/2RLEBvU">typed document.querySelector</Link>
+        </ListItem>
+      </UnorderedList>
     </Slide>
   </Deck>
 );
