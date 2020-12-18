@@ -121,7 +121,8 @@ const Presentation = () => (
           cd ihyp-ts-workshop
           mv pages/api/hello.js pages/api/hello.ts
           npm i -D typescript @types/react @types/node
-          npm run start
+          touch tsconfig.json
+          npm run dev
           `)}
           </CodePane>
         </ListItem>
