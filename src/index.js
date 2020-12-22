@@ -171,7 +171,7 @@ const Presentation = () => (
           <ListItem>currently on v4.1.3 (no semver)</ListItem>
         </Appear>
         <Appear elementNum={3}>
-          <ListItem>touring complete since v2.2</ListItem>
+          <ListItem>turing complete since v2.2</ListItem>
         </Appear>
         <Appear elementNum={4}>
           <ListItem>TS itself is written in TS</ListItem>
@@ -1801,7 +1801,7 @@ type ReturnTypeOfAdd = ReturnType<typeof add>;
                 {indentNormalizer(`
 type AddSignature = (a: number, b: number) => number;
 
-type ReturnTypeOfAdd = ReturnTyp<AddSignature>;
+type ReturnTypeOfAdd = ReturnType<AddSignature>;
                 `)}
               </CodePane>
             </Box>
